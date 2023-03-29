@@ -55,4 +55,12 @@ router.post('/login', async (req, res) => {
     res.send({ status: "success", message: "logueado" });
 })
 
+router.get('/logout', (req, res) => {
+    req.session.destroy(err => {
+        if (err) return res.status(500).send({ status: 'error', error: 'couldnt logout' });
+        res.redirect('/products');
+    })
+});
+
+
 export default router;
